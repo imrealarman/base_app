@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
+import 'package:intl/intl.dart' show Bidi;
 
-import 'core/config/app_config.dart';
 import 'core/config/environment.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
@@ -19,7 +19,10 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
     final themeMode = ref.watch(themeModeProvider);
-    final config = ref.watch(appConfigProvider);
+    final locale = TranslationProvider.of(context).flutterLocale;
+    final textDirection = Bidi.isRtlLanguage(locale.languageCode)
+        ? TextDirection.rtl
+        : TextDirection.ltr;
 
     final brightness = switch (themeMode) {
       ThemeMode.light => Brightness.light,
@@ -41,7 +44,7 @@ class App extends ConsumerWidget {
       ],
       theme: fTheme.toApproximateMaterialTheme(),
       builder: (context, child) => Directionality(
-        textDirection: config.textDirection,
+        textDirection: textDirection,
         child: FTheme(
           data: fTheme,
           child: FToaster(child: FTooltipGroup(child: child!)),

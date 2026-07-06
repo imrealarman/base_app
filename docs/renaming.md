@@ -36,11 +36,10 @@ break anything.
 
 ## Text direction (RTL/LTR)
 
-`APP_TEXT_DIRECTION` is read by `lib/core/config/app_config.dart` at startup and applied in
-`lib/app.dart` via a `Directionality` widget wrapping the whole app — so every layout
-(`Row`, `Column`, `Text.textAlign`, form fields, etc.) mirrors automatically for RTL languages
-like Arabic, Persian, or Hebrew, with no per-widget changes needed.
+`lib/app.dart` derives the app's `Directionality` automatically from the active locale (via
+`intl`'s `Bidi.isRtlLanguage`) — so every layout (`Row`, `Column`, `Text.textAlign`, form
+fields, etc.) mirrors automatically for RTL languages like Arabic, Persian, or Hebrew as soon as
+the user switches language, with no per-widget changes and no relaunch needed.
 
-To change it without re-running the whole rename flow, edit `APP_TEXT_DIRECTION` directly in
-the relevant `.env.<environment>` file (`ltr` or `rtl`) and relaunch — see
-[environments.md](environments.md).
+`APP_TEXT_DIRECTION` (read by `lib/core/config/app_config.dart`) is kept for tooling/bookkeeping
+purposes only and no longer drives the widget tree directly.

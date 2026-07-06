@@ -22,7 +22,12 @@ Future<void> bootstrap(Environment env) async {
 
   final savedLocale = await const LocaleStorage().read();
   if (savedLocale != null) {
-    LocaleSettings.setLocaleSync(AppLocaleUtils.parse(savedLocale));
+    // Must be the async setter: `fa`'s translations are deferred-loaded
+    // (see lib/i18n/strings.g.dart), and setLocaleSync's buildSync() path
+    // never awaits the deferred library, crashing before runApp() is
+    // reached — which shows up as the app being stuck on the native splash
+    // screen followed by a crash.
+    await LocaleSettings.setLocale(AppLocaleUtils.parse(savedLocale));
   } else {
     await LocaleSettings.useDeviceLocale();
   }

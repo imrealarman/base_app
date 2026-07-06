@@ -17,6 +17,11 @@ class AppConfig {
   /// Set via the `APP_TEXT_DIRECTION` env var (`ltr` or `rtl`, defaults to `ltr`).
   /// Change it interactively with `dart run tool/cli/rename.dart`, or edit the
   /// `.env.*` files directly. See `docs/renaming.md`.
+  ///
+  /// Not applied directly to the widget tree: `lib/app.dart` derives the
+  /// actual `Directionality` from the active locale (so switching languages
+  /// at runtime updates it), falling back to this value only makes sense if
+  /// you bypass locale-based resolution entirely.
   final TextDirection textDirection;
 
   factory AppConfig.fromEnv() => AppConfig(
