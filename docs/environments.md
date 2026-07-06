@@ -12,6 +12,20 @@ flutter run -t lib/main_staging.dart
 flutter run -t lib/main_prod.dart
 ```
 
+Flutter's CLI has no `flutter run:dev`-style subcommand support (unlike `npm run <script>`), so
+a short alias is provided instead — `tool/cli/run.dart` maps a plain environment name to the
+right `-t` flag and forwards any extra arguments to `flutter run` untouched:
+
+```
+dart run tool/cli/run.dart dev
+dart run tool/cli/run.dart staging
+dart run tool/cli/run.dart prod
+
+# extra args pass straight through to `flutter run`:
+dart run tool/cli/run.dart dev -d chrome
+dart run tool/cli/run.dart prod --release
+```
+
 The `.env.*` files are gitignored — copy `.env.example` to create your own on first checkout
 (see the main [README.md](../README.md)). `lib/main.dart` defaults to `dev`, for tooling that
 always launches it directly (e.g. an IDE's default "Run" button).

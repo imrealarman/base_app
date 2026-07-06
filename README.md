@@ -61,6 +61,7 @@ mixing state-management paradigms tends to cause more friction than it saves.
 | 🌐 **Networking** | `dio` + Riverpod `FutureProvider`, with a full worked example feature |
 | 🧭 **go_router** | Declarative routing with flag-gated redirects |
 | 🏷️ **Rename CLI** | One interactive command renames the app, bundle id, and sets RTL/LTR — with diff preview, backup, and automatic rollback |
+| ▶️ **Short run commands** | `dart run tool/cli/run.dart dev\|staging\|prod` instead of typing out `-t lib/main_*.dart` every time |
 | 🖼️ **Icon & splash** | Generated from one source image via `flutter_launcher_icons` + `flutter_native_splash` |
 | 🧪 **Testing conventions** | `pumpApp` test helper, `mocktail` mocking, widget + unit + integration tests |
 | 🪝 **Git hooks** | `lefthook`-powered pre-commit format/analyze + Conventional Commits enforcement |
@@ -81,6 +82,8 @@ dart run build_runner build --delete-conflicting-outputs
 
 # 3. Run it
 flutter run -t lib/main_dev.dart
+# ...or the short form:
+dart run tool/cli/run.dart dev
 ```
 
 > The `.env.*` files are gitignored — each developer creates their own from `.env.example`.
