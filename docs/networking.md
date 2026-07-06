@@ -41,6 +41,31 @@ return posts.when(
 );
 ```
 
+## Error handling
+
+`lib/core/network/api_exception.dart` classifies a caught `DioException` into an
+`ApiException` with a feature-agnostic `ApiExceptionType` (`network`, `timeout`, `notFound`,
+`server`, `unknown`), so a screen can show a message specific to what went wrong instead of
+dio's raw exception text:
+
+```dart
+try {
+  final response = await client.get<List<dynamic>>('/posts');
+  // ...
+} on DioException catch (error) {
+  throw ApiException.fromDio(error);
+}
+```
+
+`posts_screen.dart`'s `error:` branch switches on `error.type` to pick the right i18n string
+(`t.posts.errorNetwork`, `t.posts.errorTimeout`, etc.), falling back to a generic message for
+anything that isn't an `ApiException`. Follow the same pattern for new API-backed features:
+catch `DioException` in the data layer, map it to `ApiException`, and switch on `.type` in the
+screen.
+
+For uncaught errors that escape this pattern entirely (a bug, not an expected failure mode),
+see [error-handling.md](error-handling.md).
+
 ## Adding a new API-backed feature
 
 1. Add a model with `fromJson`/`toJson` under `lib/features/<name>/data/`.

@@ -24,6 +24,10 @@
   "posts": {
     "title": "Posts",
     "error": "Something went wrong loading posts.",
+    "errorNetwork": "No internet connection. Check your network and try again.",
+    "errorTimeout": "The request timed out. Please try again.",
+    "errorNotFound": "Posts couldn't be found.",
+    "errorServer": "The server had a problem. Please try again later.",
     "retry": "Retry"
   }
 }

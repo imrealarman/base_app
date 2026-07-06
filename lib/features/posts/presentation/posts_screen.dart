@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 
+import '../../../core/network/api_exception.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/posts_api.dart';
 
@@ -29,7 +30,7 @@ class PostsScreen extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             spacing: 10,
             children: [
-              Text(t.posts.error),
+              Text(_errorMessage(t, error)),
               FButton(
                 onPress: () => ref.invalidate(postsProvider),
                 child: Text(t.posts.retry),
@@ -39,5 +40,16 @@ class PostsScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  String _errorMessage(Translations t, Object error) {
+    if (error is! ApiException) return t.posts.error;
+    return switch (error.type) {
+      ApiExceptionType.network => t.posts.errorNetwork,
+      ApiExceptionType.timeout => t.posts.errorTimeout,
+      ApiExceptionType.notFound => t.posts.errorNotFound,
+      ApiExceptionType.server => t.posts.errorServer,
+      ApiExceptionType.unknown => t.posts.error,
+    };
   }
 }

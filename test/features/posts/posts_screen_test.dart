@@ -50,4 +50,45 @@ void main() {
     expect(find.text('Something went wrong loading posts.'), findsOneWidget);
     expect(find.text('Retry'), findsOneWidget);
   });
+
+  testWidgets('shows a network-specific message when offline', (tester) async {
+    when(() => dio.get<List<dynamic>>('/posts')).thenThrow(
+      DioException(
+        requestOptions: RequestOptions(path: '/posts'),
+        type: DioExceptionType.connectionError,
+      ),
+    );
+
+    await tester.pumpApp(
+      const PostsScreen(),
+      overrides: [apiClientProvider.overrideWithValue(dio)],
+    );
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('No internet connection. Check your network and try again.'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('shows a not-found-specific message on a 404', (tester) async {
+    when(() => dio.get<List<dynamic>>('/posts')).thenThrow(
+      DioException(
+        requestOptions: RequestOptions(path: '/posts'),
+        type: DioExceptionType.badResponse,
+        response: Response(
+          requestOptions: RequestOptions(path: '/posts'),
+          statusCode: 404,
+        ),
+      ),
+    );
+
+    await tester.pumpApp(
+      const PostsScreen(),
+      overrides: [apiClientProvider.overrideWithValue(dio)],
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text("Posts couldn't be found."), findsOneWidget);
+  });
 }

@@ -48,3 +48,65 @@ jobs:
         with:
           name: coverage
           path: coverage/lcov.info
+
+      - name: Enforce minimum coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v3
+        with:
+          path: coverage/lcov.info
+          min_coverage: 50
+
+  build-android:
+    needs: analyze-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          cache: true
+
+      - name: Create env files from template
+        run: |
+          cp .env.example .env.dev
+          cp .env.example .env.staging
+          cp .env.example .env.prod
+
+      - run: flutter pub get
+
+      - name: Generate code (riverpod + slang)
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      # Unsigned debug build — catches Gradle/manifest/dependency breakage
+      # without needing signing secrets. Point this at `--release` once
+      # signing is configured for an actual release pipeline (see
+      # docs/git-hooks-and-ci.md).
+      - name: Build Android (debug)
+        run: flutter build apk --debug -t lib/main_prod.dart
+
+  build-ios:
+    needs: analyze-and-test
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          cache: true
+
+      - name: Create env files from template
+        run: |
+          cp .env.example .env.dev
+          cp .env.example .env.staging
+          cp .env.example .env.prod
+
+      - run: flutter pub get
+
+      - name: Generate code (riverpod + slang)
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      # --no-codesign avoids needing an Apple signing certificate in CI;
+      # this only proves the app compiles for iOS, not that it's shippable.
+      - name: Build iOS (no codesign)
+        run: flutter build ios --debug --no-codesign -t lib/main_prod.dart

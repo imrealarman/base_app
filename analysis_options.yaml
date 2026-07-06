@@ -11,3 +11,8 @@ analyzer:
 linter:
   rules:
     prefer_single_quotes: true
+    avoid_print: true
+    unawaited_futures: true
+    cancel_subscriptions: true
+    require_trailing_commas: true
+    prefer_relative_imports: true

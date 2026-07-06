@@ -122,6 +122,18 @@ class Translations$posts$en {
 	/// en: 'Something went wrong loading posts.'
 	String get error => 'Something went wrong loading posts.';
 
+	/// en: 'No internet connection. Check your network and try again.'
+	String get errorNetwork => 'No internet connection. Check your network and try again.';
+
+	/// en: 'The request timed out. Please try again.'
+	String get errorTimeout => 'The request timed out. Please try again.';
+
+	/// en: 'Posts couldn't be found.'
+	String get errorNotFound => 'Posts couldn\'t be found.';
+
+	/// en: 'The server had a problem. Please try again later.'
+	String get errorServer => 'The server had a problem. Please try again later.';
+
 	/// en: 'Retry'
 	String get retry => 'Retry';
 }
@@ -168,6 +180,10 @@ extension on Translations {
 			'settings.themeMode.dark' => 'Dark',
 			'posts.title' => 'Posts',
 			'posts.error' => 'Something went wrong loading posts.',
+			'posts.errorNetwork' => 'No internet connection. Check your network and try again.',
+			'posts.errorTimeout' => 'The request timed out. Please try again.',
+			'posts.errorNotFound' => 'Posts couldn\'t be found.',
+			'posts.errorServer' => 'The server had a problem. Please try again later.',
 			'posts.retry' => 'Retry',
 			_ => null,
 		};

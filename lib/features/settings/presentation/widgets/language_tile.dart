@@ -24,7 +24,7 @@ class LanguageTile extends StatelessWidget {
             value: current == locale,
             onChange: (selected) async {
               if (!selected) return;
-              LocaleSettings.setLocale(locale);
+              await LocaleSettings.setLocale(locale);
               await const LocaleStorage().write(locale.name);
             },
           ),

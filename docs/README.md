@@ -12,6 +12,7 @@ Guides for customizing this template. Start with whichever matches what you're c
 - **[environments.md](environments.md)** — env vars, feature flags, and adding a new one.
 - **[i18n.md](i18n.md)** — translations, language switching, adding a new language.
 - **[networking.md](networking.md)** — the dio + Riverpod data-fetching pattern, with a worked example.
+- **[error-handling.md](error-handling.md)** — the uncaught-error reporting hook, and logging conventions.
 
 **Development workflow**
 - **[testing.md](testing.md)** — unit/widget tests, the `pumpApp` helper, mocking with mocktail.

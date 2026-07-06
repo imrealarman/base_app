@@ -91,6 +91,10 @@ class _Translations$posts$fa implements Translations$posts$en {
 	// Translations
 	@override String get title => 'پست‌ها';
 	@override String get error => 'بارگذاری پست‌ها با خطا مواجه شد.';
+	@override String get errorNetwork => 'اتصال اینترنت وجود ندارد. اتصال خود را بررسی کرده و دوباره تلاش کنید.';
+	@override String get errorTimeout => 'زمان درخواست به پایان رسید. لطفاً دوباره تلاش کنید.';
+	@override String get errorNotFound => 'پست‌ها یافت نشدند.';
+	@override String get errorServer => 'سرور با مشکل مواجه شد. لطفاً بعداً دوباره تلاش کنید.';
 	@override String get retry => 'تلاش مجدد';
 }
 
@@ -130,6 +134,10 @@ extension on TranslationsFa {
 			'settings.themeMode.dark' => 'تیره',
 			'posts.title' => 'پست‌ها',
 			'posts.error' => 'بارگذاری پست‌ها با خطا مواجه شد.',
+			'posts.errorNetwork' => 'اتصال اینترنت وجود ندارد. اتصال خود را بررسی کرده و دوباره تلاش کنید.',
+			'posts.errorTimeout' => 'زمان درخواست به پایان رسید. لطفاً دوباره تلاش کنید.',
+			'posts.errorNotFound' => 'پست‌ها یافت نشدند.',
+			'posts.errorServer' => 'سرور با مشکل مواجه شد. لطفاً بعداً دوباره تلاش کنید.',
 			'posts.retry' => 'تلاش مجدد',
 			_ => null,
 		};

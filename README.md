@@ -59,6 +59,8 @@ mixing state-management paradigms tends to cause more friction than it saves.
 | ✅ **Validated config** | Strict-in-CI, lenient-in-dev env validation catches misconfiguration before it ships |
 | 🧠 **Riverpod** | Code-gen providers for config, flags, theme, router, and data — no boilerplate |
 | 🌐 **Networking** | `dio` + Riverpod `FutureProvider`, with a full worked example feature |
+| 🩹 **Typed API errors** | `DioException` mapped to a typed `ApiException` — screens show a specific message per failure kind, not raw exception text |
+| 🚨 **Crash reporting hook** | Uncaught errors funnel through one `ErrorReporter.reportError` — wire in Sentry/Crashlytics with a one-line change |
 | 🧭 **go_router** | Declarative routing with flag-gated redirects |
 | 🏷️ **Rename CLI** | One interactive command renames the app, bundle id, and sets RTL/LTR — with diff preview, backup, and automatic rollback |
 | ▶️ **Short run commands** | `dart run tool/cli/run.dart dev\|staging\|prod` instead of typing out `-t lib/main_*.dart` every time |
@@ -108,7 +110,9 @@ lib/
 ├── app.dart               # MaterialApp.router + theme + directionality
 ├── core/                  # cross-cutting concerns, no feature depends on another feature
 │   ├── config/            #   env, feature flags, validation
-│   ├── network/           #   shared dio client
+│   ├── network/           #   shared dio client + typed ApiException
+│   ├── error/              #   uncaught-error reporting hook
+│   ├── logging/            #   AppLogger (dart:developer wrapper)
 │   ├── theme/              #   forui theme + font
 │   ├── router/             #   go_router setup
 │   └── i18n/               #   locale persistence
@@ -131,7 +135,8 @@ docs/                        # one guide per customization topic — start at do
 See [docs/README.md](docs/README.md) for the full guide index, or jump straight to a topic:
 [theming](docs/theming.md) · [fonts](docs/fonts.md) · [icons & splash](docs/icons-and-splash.md) ·
 [renaming](docs/renaming.md) · [environments](docs/environments.md) · [i18n](docs/i18n.md) ·
-[networking](docs/networking.md) · [testing](docs/testing.md) · [git hooks & CI](docs/git-hooks-and-ci.md).
+[networking](docs/networking.md) · [error handling](docs/error-handling.md) ·
+[testing](docs/testing.md) · [git hooks & CI](docs/git-hooks-and-ci.md).
 
 ## Adding a new feature module
 

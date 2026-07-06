@@ -13,6 +13,10 @@ part of 'posts_api.dart';
 /// wrapped in a Riverpod [FutureProvider] so screens get loading/error/data
 /// states via [AsyncValue] for free (`ref.watch(postsProvider)`), with
 /// automatic caching and re-fetch-on-invalidate (`ref.invalidate(postsProvider)`).
+///
+/// [DioException] is caught and rethrown as [ApiException] so the screen can
+/// show a message specific to what went wrong (offline, timeout, 404, ...)
+/// instead of dio's raw exception text — see `posts_screen.dart`.
 
 @ProviderFor(posts)
 final postsProvider = PostsProvider._();
@@ -22,6 +26,10 @@ final postsProvider = PostsProvider._();
 /// wrapped in a Riverpod [FutureProvider] so screens get loading/error/data
 /// states via [AsyncValue] for free (`ref.watch(postsProvider)`), with
 /// automatic caching and re-fetch-on-invalidate (`ref.invalidate(postsProvider)`).
+///
+/// [DioException] is caught and rethrown as [ApiException] so the screen can
+/// show a message specific to what went wrong (offline, timeout, 404, ...)
+/// instead of dio's raw exception text — see `posts_screen.dart`.
 
 final class PostsProvider
     extends
@@ -36,6 +44,10 @@ final class PostsProvider
   /// wrapped in a Riverpod [FutureProvider] so screens get loading/error/data
   /// states via [AsyncValue] for free (`ref.watch(postsProvider)`), with
   /// automatic caching and re-fetch-on-invalidate (`ref.invalidate(postsProvider)`).
+  ///
+  /// [DioException] is caught and rethrown as [ApiException] so the screen can
+  /// show a message specific to what went wrong (offline, timeout, 404, ...)
+  /// instead of dio's raw exception text — see `posts_screen.dart`.
   PostsProvider._()
     : super(
         from: null,
@@ -61,4 +73,4 @@ final class PostsProvider
   }
 }
 
-String _$postsHash() => r'71040065fe7e7498a4ba1ba71a7802a5e8a5cbf0';
+String _$postsHash() => r'2206abb7363b35b63d2e3c7cca5f6760c94d2c99';

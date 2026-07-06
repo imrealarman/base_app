@@ -64,7 +64,9 @@ bumping `pubspec.yaml` versions and maintaining a changelog.
 
 ## CI (GitHub Actions)
 
-`.github/workflows/ci.yml` runs on every push/PR to `main`:
+`.github/workflows/ci.yml` has three jobs:
+
+**`analyze-and-test`** runs on every push/PR to `main`:
 
 1. Materializes `.env.dev`/`.env.staging`/`.env.prod` from the committed `.env.example` (the
    real files are gitignored — see [environments.md](environments.md)) and forces
@@ -74,7 +76,14 @@ bumping `pubspec.yaml` versions and maintaining a changelog.
 3. `dart run build_runner build --delete-conflicting-outputs` (generates Riverpod + slang code)
 4. `dart format --set-exit-if-changed .` — fails if anything isn't formatted.
 5. `flutter analyze` — fails on any analyzer issue.
-6. `flutter test --coverage` — uploads `coverage/lcov.info` as a build artifact.
+6. `flutter test --coverage` — uploads `coverage/lcov.info` as a build artifact, then
+   [`very_good_coverage`](https://github.com/VeryGoodOpenSource/very_good_coverage) fails the
+   build if line coverage drops below `min_coverage` (50%, adjust as the suite grows).
+
+**`build-android`** and **`build-ios`** run after `analyze-and-test` passes, and build an
+unsigned debug artifact (`flutter build apk --debug`, `flutter build ios --debug
+--no-codesign`) — this only proves the app still compiles for each platform (catches
+Gradle/manifest/CocoaPods breakage), it is *not* a release pipeline. See below for that.
 
 ### Release workflow (not included, recommended pattern)
 
