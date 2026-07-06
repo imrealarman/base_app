@@ -1,0 +1,24 @@
+# Git hooks, run via lefthook (https://github.com/evilmartians/lefthook).
+# Install: see docs/git-hooks-and-ci.md for platform-specific instructions.
+# Enable in this repo: `lefthook install`
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: '*.dart'
+      run: dart format --set-exit-if-changed {staged_files}
+    analyze:
+      glob: '*.dart'
+      run: flutter analyze --no-fatal-infos
+
+commit-msg:
+  commands:
+    conventional-commit:
+      run: dart run tool/cli/check_commit_msg.dart {1}
+
+post-merge:
+  commands:
+    pub-get-on-lockfile-change:
+      glob: 'pubspec.lock'
+      run: flutter pub get

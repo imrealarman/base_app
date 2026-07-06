@@ -1,0 +1,29 @@
+{
+  "app": {
+    "title": "اپ پایه"
+  },
+  "home": {
+    "environment": "محیط: $env",
+    "apiBaseUrl": "آدرس API: $url",
+    "openSettings": "باز کردن تنظیمات",
+    "openPosts": "مشاهده پست‌ها (نمونه dio + Riverpod)",
+    "analyticsOn": "تحلیل: فعال"
+  },
+  "settings": {
+    "title": "تنظیمات",
+    "displayNamePreview": "پیش‌نمایش نام نمایشی",
+    "displayNameHint": "یک نام نمایشی وارد کنید",
+    "theme": "پوسته",
+    "language": "زبان",
+    "themeMode": {
+      "system": "سیستم",
+      "light": "روشن",
+      "dark": "تیره"
+    }
+  },
+  "posts": {
+    "title": "پست‌ها",
+    "error": "بارگذاری پست‌ها با خطا مواجه شد.",
+    "retry": "تلاش مجدد"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "app": {
+    "title": "Base App"
+  },
+  "home": {
+    "environment": "Environment: $env",
+    "apiBaseUrl": "API: $url",
+    "openSettings": "Open settings",
+    "openPosts": "View posts (dio + Riverpod demo)",
+    "analyticsOn": "Analytics: on"
+  },
+  "settings": {
+    "title": "Settings",
+    "displayNamePreview": "Display name preview",
+    "displayNameHint": "Enter a display name",
+    "theme": "Theme",
+    "language": "Language",
+    "themeMode": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    }
+  },
+  "posts": {
+    "title": "Posts",
+    "error": "Something went wrong loading posts.",
+    "retry": "Retry"
+  }
+}
