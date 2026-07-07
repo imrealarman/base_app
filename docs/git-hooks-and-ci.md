@@ -33,11 +33,7 @@ What runs:
   [Conventional Commits](https://www.conventionalcommits.org) via
   `dart run tool/cli/check_commit_msg.dart` (see below).
 - **post-merge**: runs `flutter pub get` automatically if `pubspec.lock` changed after a
-  pull/merge, so a teammate's new dependency doesn't silently go missing locally. Also
-  regenerates `*.g.dart` (Riverpod + slang) if the merge touched a source file build_runner
-  reads — see [code-generation.md](code-generation.md) for why those files are gitignored
-  instead of committed.
-- **post-checkout**: regenerates `*.g.dart` after every branch switch, for the same reason.
+  pull/merge, so a teammate's new dependency doesn't silently go missing locally.
 
 ## Commit conventions
 

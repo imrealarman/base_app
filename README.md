@@ -91,12 +91,6 @@ dart run tool/cli/run.dart dev
 > The `.env.*` files are gitignored — each developer creates their own from `.env.example`.
 > Since they're declared as Flutter assets, the app won't build without them.
 
-> Generated `*.g.dart` files (step 2) are gitignored too, on purpose — committing them causes
-> merge conflicts across clones/branches. `lefthook install` (below) sets up hooks that
-> regenerate them automatically after a pull or branch switch. See
-> [docs/code-generation.md](docs/code-generation.md) for the full rundown of when to rerun
-> `build_runner` yourself.
-
 Then, before you ship:
 
 ```bash

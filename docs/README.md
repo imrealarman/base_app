@@ -15,8 +15,6 @@ Guides for customizing this template. Start with whichever matches what you're c
 - **[error-handling.md](error-handling.md)** — the uncaught-error reporting hook, and logging conventions.
 
 **Development workflow**
-- **[code-generation.md](code-generation.md)** — when you must rerun `build_runner`, and why
-  generated files are gitignored instead of committed.
 - **[testing.md](testing.md)** — unit/widget tests, the `pumpApp` helper, mocking with mocktail.
 - **[git-hooks-and-ci.md](git-hooks-and-ci.md)** — lefthook, commit conventions, GitHub Actions CI.
 
