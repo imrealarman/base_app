@@ -1,5 +1,5 @@
-name: base_app
-description: "A configurable Flutter app template with feature flags, environments, and theming."
+name: ravan
+description: "ride sharing app for afghanistan"
 publish_to: 'none'
 version: 0.1.0+1
 

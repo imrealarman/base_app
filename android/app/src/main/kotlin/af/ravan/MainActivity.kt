@@ -1,4 +1,4 @@
-package com.example.base_app
+package af.ravan
 
 import io.flutter.embedding.android.FlutterActivity
 

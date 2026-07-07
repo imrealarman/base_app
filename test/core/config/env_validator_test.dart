@@ -1,7 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:base_app/core/config/env_validator.dart';
+import 'package:ravan/core/config/env_validator.dart';
 
 void main() {
   group('validateEnv', () {

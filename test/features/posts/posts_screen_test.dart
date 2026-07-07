@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:base_app/core/network/api_client.dart';
-import 'package:base_app/features/posts/presentation/posts_screen.dart';
+import 'package:ravan/core/network/api_client.dart';
+import 'package:ravan/features/posts/presentation/posts_screen.dart';
 
 import '../../support/pump_app.dart';
 

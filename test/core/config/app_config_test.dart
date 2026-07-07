@@ -2,7 +2,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:base_app/core/config/app_config.dart';
+import 'package:ravan/core/config/app_config.dart';
 
 void main() {
   group('AppConfig.fromEnv', () {

@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:base_app/app.dart';
-import 'package:base_app/core/config/environment.dart';
+import 'package:ravan/app.dart';
+import 'package:ravan/core/config/environment.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

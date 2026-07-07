@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:base_app/i18n/strings.g.dart';
+import 'package:ravan/i18n/strings.g.dart';
 
 /// Pumps [widget] wrapped with the providers every screen expects in
 /// production: a [ProviderScope] (optionally pre-seeded via [overrides]) and
