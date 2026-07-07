@@ -33,6 +33,11 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# build_runner output (riverpod_generator, slang) — never commit these.
+# Regenerate with `dart run build_runner build --delete-conflicting-outputs`.
+# See docs/code-generation.md for why, and when you need to rerun it.
+*.g.dart
+
 # Symbolication related
 app.*.symbols
 

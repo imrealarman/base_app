@@ -22,3 +22,16 @@ post-merge:
     pub-get-on-lockfile-change:
       glob: 'pubspec.lock'
       run: flutter pub get
+    # Generated code (*.g.dart) is gitignored — see docs/code-generation.md — so it
+    # never travels with a pull/merge. Regenerate whenever a merge touches a file
+    # build_runner reads, otherwise the working tree analyzes clean but is stale.
+    regenerate-code:
+      glob: '{lib/**/*.dart,lib/i18n/*.i18n.json,build.yaml}'
+      run: dart run build_runner build --delete-conflicting-outputs
+
+post-checkout:
+  commands:
+    # Same reasoning as post-merge: switching branches can land on code whose
+    # generated output doesn't exist yet or no longer matches what's on disk.
+    regenerate-code:
+      run: dart run build_runner build --delete-conflicting-outputs

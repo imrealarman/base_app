@@ -1,10 +1,11 @@
 targets:
   $default:
     builders:
-      # The default builder conflicts with pre-existing strings.g.dart files
-      # (e.g. after a fresh git clone with no .dart_tool cache yet) with
-      # "Asset already exists". The legacy builder writes directly via
-      # dart:io instead, which doesn't have this problem.
+      # The default builder conflicts with a pre-existing strings.g.dart that
+      # has no matching .dart_tool build-cache entry (e.g. after switching
+      # branches — see docs/code-generation.md) with "Asset already exists".
+      # The legacy builder writes directly via dart:io instead, which doesn't
+      # have this problem.
       slang_build_runner:
         enabled: false
       slang_build_runner:legacy:
